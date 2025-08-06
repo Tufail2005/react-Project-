@@ -1,14 +1,13 @@
-const express = require("express");
 const {JWT_SECRET} = require("../config");
 const jwt = require("jsonwebtoken");
-const { model } = require("mongoose");
+
 
 const authmiddleware = (req, res, next)=>
 {
-   const authHeader = req.headers.authroization;
+   const authHeader = req.headers.authorization;
    
-   if(!authHeader || !authHeader.startsWith("Bearer")){
-    return res.status(403).json({});
+   if(!authHeader || !authHeader.startsWith("Bearer ")){
+    return res.status(403).json({msg: "problem in auth header"});
    }
 
    const token = authHeader.split(" ")[1];
@@ -27,6 +26,6 @@ try {
    
 }
 
-model.exports = {
+module.exports = {
     authmiddleware
 };

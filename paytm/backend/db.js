@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 
+const dotenv = require("dotenv").config();
 const dbUrl = process.env.db_string;
-mongoose.connect("dbUrl");
+mongoose.connect(dbUrl);
+
 
 const userSchema = new mongoose.Schema({
 
