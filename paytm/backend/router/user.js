@@ -76,18 +76,47 @@ router.post("/signin" ,async(req, res)=>{
 
 
 
+
 //Update route put method
-const updateSchema = zod.object({
+const updateBody = zod.object({
    password: zod.string().optional(),
    firstName: zod.string().optional(),
    lastName: zod.string().optional(),
 })
 
-router.put("/update", async(req, res)=>{
-    
+router.put("/update", authmiddleware ,async(req, res)=>{
+      const { success } = updateBody.safeParse(req.body);
+  if (!success) {
+    res.status(411).json({ msg: "Error while updating information" });
+  }
+
+  await User.updateOne({_id : req.userId}, req.body);
+  res.json({msg:"updated successfully"});
 })
+
+
+
+
 //get all user route get method
 
 router.get("/bulk", async(req, res)=>{
-    
+    const filter = req.query.filter || "";
+
+    const users = await User.find({
+      $or: [
+         {firstName: {$regex: filter, $options:"i"}},
+         {lastName: {$regex: filter, $options:"i"}}
+      ]
+    })
+
+    res.json({
+      user: users.map((user)=>({
+         userName: user.userName,
+         firstName: user.firstName,
+         lastName: user.lastName,
+         _id: user._id,
+      }))
+    })
 })
+
+module.exports = router; 
