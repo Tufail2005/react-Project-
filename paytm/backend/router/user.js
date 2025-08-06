@@ -2,8 +2,10 @@ const express = require("express");
 const zod = require("zod");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = require("../")
-
+const authmiddleware = require("../authmiddleware/authmiddleware")
 const {User, Account} = require("../db")
+
+
 
 const router = express.Router();
 //signUp route method
@@ -42,15 +44,37 @@ const createdUser = await createOne({
 
 })
 
+
+
+
 //signIn route post method 
 const signimSchema = zod.object({
    userName: zod.string(),
    password: zod.string(),
 })
 
-router.post("/signin", async(req, res)=>{
-    const {success} = signimSchema.safeParse(req.body);
+router.post("/signin" ,async(req, res)=>{
+    const parse = signimSchema.safeParse(req.body);
+
+   if(!parse.success){
+      return res.status(411).json({msg:"Incorrect input"})
+   }
+   
+   const {userName, password} = parse.data
+  
+   const userExist = await User.findOne({userName})
+
+   if(!userExist || userExist.password !== password){
+      return res.status.json({msg: "Invalid user of password"});
+   }
+
+   const token = jwt.sign({userId: userExist._id}, JWT_SECRET);
+   res.status(200).json({token});
+
  })
+
+
+
 
 //Update route put method
 const updateSchema = zod.object({
