@@ -1,20 +1,25 @@
 const express = require("express");
 const { authmiddleware } = require("../middleware/authmiddleware");
-const { Account } = require("../db");
+const { User , Account } = require("../db");
 const { default: mongoose } = require("mongoose");
+const { object } = require("zod");
 
 const router = express.Router();
 
 //balance checking routes
 router.get("/balance", authmiddleware, async (req, res) => {
-  const account = await Account.findOne({
-    userId: req.userId,
-  });
 
+  const account = await Account.findOne({userId: req.userId});
+
+  if (!account) {
+    return res.status(404).json({ error: "Account not found" });
+  }
+   
   res.json({
-    balance: account.balance,
+    balance: account.balance
   });
 });
+
 
 
 //transfer routes with session 

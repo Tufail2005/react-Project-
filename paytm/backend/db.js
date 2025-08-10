@@ -39,10 +39,10 @@ const userSchema = new mongoose.Schema({
 })
 
 const accountSchema = new mongoose.Schema({
-    userName:{
+    userId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        reuired: true,
+        required: true,
     },
     balance:{
         type: Number,

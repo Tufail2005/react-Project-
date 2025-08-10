@@ -34,12 +34,14 @@ const createdUser = await User.create({
     lastName : req.body.lastName,
 })
  
+const userId = createdUser._id;
+ 
  await Account.create({
-    userId: createdUser._id,
+    userId,
     balance: 1 + Math.random() * 10000,
  });
 
- const token = jwt.sign({userId: createdUser._id}, JWT_SECRET);
+ const token = jwt.sign({userId}, JWT_SECRET);
 
     return res.status(200).json({msg:"user Created successfully", token: token,})
 
