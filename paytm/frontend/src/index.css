@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Define custom tokens */
+@theme {
+  --bg-fancy: linear-gradient(to right, #8386d3, #7b84d6, #7183d9, #6681dd, #5980e0);
+}
+
+/* Define a utility that uses the token */
+@utility bg-fancy {
+  background-image: var(--bg-fancy);
+}
