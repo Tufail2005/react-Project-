@@ -5,6 +5,8 @@ import hero_banner from "../../assets/hero_banner.jpg"
 import hero_title from "../../assets/hero_title.png"
 import play_icon from "../../assets/play_icon.png"
 import info_icon from "../../assets/info_icon.png"
+import TitleCards from '../../components/TitleCards/TitleCards'
+import Footer from '../../components/Footer/Footer'
 const Home = () => {
   
   return (
@@ -17,14 +19,23 @@ const Home = () => {
            <p>
               Discovering his ties to a secret ancient order, a young man living in modern Instanbul embarks on a quest to save the city from an immortal enemy.
            </p>
-           <div className='hero-btns'>
-      
+           <div className='hero-btns'>    
               <button className='btn'> <img src={play_icon} alt={"play_icon"} />Play</button>   
              <button className='btn dark-btn'> <img src={info_icon} alt={"info_icon"} />More Info</button>
-
            </div>
+           <TitleCards title={"Propular on Netflix"} />
         </div>
       </div>
+
+      <div className='more-cards'>
+        <TitleCards title={"Bloackbuster Movies"} />
+        <TitleCards title={"Only on Netflix"} />
+        <TitleCards title={"Upcoming"} />
+        <TitleCards title={"Top picks for you"} />
+      </div>
+      
+          <Footer />
+
     </div>
 
   )
