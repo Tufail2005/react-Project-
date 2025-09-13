@@ -11,6 +11,8 @@
     display: flex;
     gap:10px;
     overflow: scroll;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .card-list::-webkit-scrollbar{
@@ -18,9 +20,12 @@
 }
 
 .card-list img{
-    width: 240px;
+    width: 250px;
     border-radius:4px ;
     cursor: pointer;
+    height: 300px;
+    object-fit: cover;
+
 }
 
 .card-list .card{
@@ -31,4 +36,6 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
+    text-decoration: none;
+    color: #fff ;
 }
