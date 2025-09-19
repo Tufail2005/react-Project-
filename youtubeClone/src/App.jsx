@@ -1,13 +1,21 @@
 import { useState } from 'react'
-import './App.css'
+import Navbar from './Components/Navbar/Navbar'
+import Home from "./pages/Home/Home"
+import Video from "./pages/Video/Video"
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [sidebar, setSidebar] = useState(true);
 
   return (
     <>
-      <div class="text-3xl font-bold underline">
-          hello world
+      <div >
+          <Navbar setSidebar={setSidebar}/>
+          <Routes>
+            <Route path='/' element={<Home sidebar={sidebar} />} />
+            <Route path='/video/:categoryId/:videoId' element={<Video />} /> 
+          </Routes>
       </div>
     </>
   )
