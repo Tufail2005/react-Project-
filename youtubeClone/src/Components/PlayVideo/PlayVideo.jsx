@@ -53,7 +53,6 @@ const PlayVideo = () => {
 
   return (
     <div className="play-video">
-      {/* <video src={video1} controls autoPlay muted ></video> */}
       <iframe
         src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
         frameBorder="0"
