@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-const dotenv = require("dotenv").config();
+const { minLength, maxLength } = require("zod");
 
-const dbUrl = process.env.db_string;
+const dotenv = require("dotenv").config();
+const dbUrl = process.env.mongo_url;
 mongoose.connect(dbUrl);
 
 const petSchema = new mongoose.Schema({
@@ -13,23 +14,27 @@ const petSchema = new mongoose.Schema({
   },
   petType: {
     type: String,
-    require: true,
+    required: true,
     minLength: 3,
     maxLength: 30,
   },
-  Bread: {
+  breed: {
     type: String,
   },
-  yourName: {
+  userName: {
     type: String,
     required: true,
     minLength: 3,
     maxLength: 30,
   },
+  userEmail: {
+    type: String,
+    require: true,
+    minLength: 3,
+    maxLength: 30,
+  },
   phone: {
     type: Number,
-    minLength: 10,
-    maxLength: 10,
   },
 });
 
