@@ -35,7 +35,7 @@ body {
 .form-main {
   width: 50%;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 20px;
   border-radius: 5px;
   padding: 20px;
 }
@@ -50,4 +50,34 @@ body {
   padding-bottom: 40px;
   border: 2px solid #a87ff8;
   border-radius: 30px;
+}
+
+.btn {
+  width: 80%;
+  background-color: #6b46c1; /* strong purple */
+  color: white;
+  margin: 30px 10%;
+  padding: 5px 2px;
+  border-style: none;
+  border-radius: 20px;
+}
+
+.btn:focus {
+  box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+}
+
+.btn:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  box-shadow: #d6d6e7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+.btns {
+  display: flex;
 }

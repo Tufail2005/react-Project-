@@ -37,7 +37,7 @@ app.post("/", async (req, res) => {
     breed: req.body.breed,
     userName: req.body.userName,
     userEmail: req.body.userEmail,
-    phone: req.body.phone,
+    phone: Number(req.body.phone),
   });
 
   res.status(200).json({ msg: "your data is uploaded" });
