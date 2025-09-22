@@ -1,8 +1,10 @@
 const express = require("express");
 const zod = require("zod");
 const { Pet } = require("./db");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const petSchema = zod.object({
@@ -41,8 +43,9 @@ app.post("/", async (req, res) => {
   res.status(200).json({ msg: "your data is uploaded" });
 });
 
-app.get("/", (req, res) => {
-  res.send("hello world");
+app.get("/", async (req, res) => {
+  const response = await Pet.find({});
+  res.status(200).json({ pets: response });
 });
 
 app.listen(3000, () => {
