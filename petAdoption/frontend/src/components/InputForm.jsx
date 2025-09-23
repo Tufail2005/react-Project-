@@ -71,7 +71,7 @@ const InputForm = () => {
                 breed,
                 userName,
                 userEmail,
-                phone,
+                phone: Number(phone),
               });
               navigate("/Table");
             }}

@@ -81,3 +81,20 @@ body {
 .btns {
   display: flex;
 }
+
+.main-table {
+  border: 2px solid #8a60da;
+  border-radius: 20px;
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.main-table table {
+  position: relative;
+  width: 90%;
+  left: 30px;
+  top: 10px;
+  margin: 10px 5px;
+  background-color: #fff;
+}

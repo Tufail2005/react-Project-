@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Table = () => {
   const [pets, setpets] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchPets = async () => {
-      const response = await axios.get("http://localhost:3000/pets");
-      setpets(response.data);
+      const response = await axios.get("http://localhost:3000/");
+      setpets(response.data.pets);
     };
     fetchPets();
   }, []);
@@ -39,6 +40,14 @@ const Table = () => {
             ))}
           </tbody>
         </table>
+        <button
+          className="btn"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          GoBack
+        </button>
       </div>
     </div>
   );
